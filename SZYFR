@@ -1,0 +1,191 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace SzyfrRSA
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void SZYFRUJ_Click(object sender, RoutedEventArgs e)
+        {
+            int a, b;
+
+
+            a = int.Parse(TXB_1.Text);
+            b = int.Parse(TXB_2.Text);
+
+            ObliczNWD wynik = new ObliczNWD(a, b);
+
+            MessageBox.Show("NWD = " + wynik.nwd());
+        }
+
+        private void Modulo_Click(object sender, RoutedEventArgs e)
+        {
+
+            int a, b;
+
+
+            a = int.Parse(TXB_1.Text);
+            b = int.Parse(TXB_2.Text);
+
+            
+
+            OdwrotneModulo wynik = new OdwrotneModulo(a, b);
+
+            MessageBox.Show("Odwrotne Modulo = " + wynik.OdwrotneModulo());
+        }
+    }
+
+
+
+
+
+    class ObliczNWD
+    {
+
+        private int a, b, nd;
+
+        ObliczNWD(int _a, int _b)
+        {
+
+            this.a = _a;
+            this.b = _b;
+        }
+
+        int nwd()
+        {
+
+            int x = a, y = b;
+
+            while (x != y)
+            {
+
+                if (x > y)
+                    x = x - y;
+                else
+                    y = y - x;
+            }
+
+            nd = x;
+            return nd;
+        }
+
+    }
+
+
+
+        class OdwrotneModulo
+        {
+
+            private int a, b, nd;
+
+        OdwrotneModulo(int _a, int _i)
+
+        {
+
+            int t = 0;
+            int pp = 1;
+            int q;
+            int t;
+            int d;
+            int p;
+
+            int x = _a, y = _i;
+
+
+
+            while (t > 0)
+            {
+                d = p - q * p;
+                if (d >= 0)
+                    d = d % y;
+                else
+                    d = y - ((-d) % y);
+                p = pp; pp = d; y = p; p = t;
+
+                while (y > 0)
+                {
+                    q = x / y;
+                    t = y% x;
+
+                    
+              }
+                return pp;
+            }
+        }
+        
+                class Losowa
+                {
+                    public static void LosowaL(out int[] tablica, int rozmiar, int Domyślna)
+                    {
+
+                        int i; int lo;
+                        int p; int q; int e; int d;
+                        tablica = new int[rozmiar];
+                        Random w = new Random();
+
+                        for (i = 0; i < tablica.Length; i++)//petla zapelniajaca tablice elemtami
+                            tablica[i] = w.Next(10);
+
+                        Array.Sort(tablica);
+                        for (i = 0; i < tablica.Length; i++)//petla zapelniajaca tablice elemtami
+                        MessageBox.Show(i + ". elemt: " + tablica[i]);
+
+
+                        
+                        do
+                        {
+                            p = tablica[(Random * 10)];
+                            q = tablica[(Random * 10)];
+                        } while (p == q);
+
+                        e = (p - 1) * (q - 1); lo = p * q;
+
+                        
+
+                        for (e = 3; ObliczNWD(e, lo) != 1; e += 2) ;
+                        d = OdwrotneModulo(e, lo);
+                    }
+                }
+
+                public void pm(int a, int w, int n)
+                {
+                    int p; int y; int q;
+
+                    // wykładnik w rozbieramy na sumę potęg 2
+                    
+                   
+
+                    p = a; y = 1;
+                    for (q = w; q > 0; q = (q / 2))
+                    {
+                    if (q != 0) 
+                    {
+                        q = q % 2;
+                        y = (y * p) % n;
+                        p = (p * p) % n; // kolejna potęga
+                    }
+                    return pm;
+                }
+                   
+                }
+            }
